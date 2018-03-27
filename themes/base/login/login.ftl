@@ -59,21 +59,30 @@
                 </div>
             </form>
         </#if>
-    <#elseif section = "info" >
-        <#if realm.password && realm.registrationAllowed && !usernameEditDisabled??>
-            <div id="kc-registration">
-                <span>${msg("noAccount")} <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a></span>
-            </div>
-        </#if>
+        
+        <#elseif section = "info" >
 
-        <#if realm.password && social.providers??>
-            <div id="kc-social-providers">
-                <ul>
-                    <#list social.providers as p>
-                        <li><a href="${p.loginUrl}" id="zocial-${p.alias}" class="zocial ${p.providerId}"> <span class="text">${p.displayName}</span></a></li>
-                    </#list>
-                </ul>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <#if realm.password && realm.registrationAllowed && !usernameEditDisabled??>
+                        <div id="kc-registration">
+                            <span>${msg("noAccount")} <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a></span>
+                        </div>
+                    </#if>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 text-right">
+                    <#if realm.password && social.providers??>
+                        <div id="kc-social-providers">
+                            <ul class="list-unstyled list-inline">
+                                <#list social.providers as p>
+                                    <li><a href="${p.loginUrl}" id="zocial-${p.alias}" class="zocial ${p.providerId}"> <span class="text">${p.displayName}</span></a></li>
+                                </#list>
+                            </ul>
+                        </div>
+                    </#if>
+                </div>
             </div>
+
+            
         </#if>
-    </#if>
 </@layout.registrationLayout>

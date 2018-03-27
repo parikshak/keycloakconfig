@@ -35,10 +35,10 @@
     <div id="kc-logo"><a href="${properties.kcLogoLink!'#'}"><div id="kc-logo-wrapper"></div></a></div>
 
     <div id="kc-container" class="${properties.kcContainerClass!}">
-        <div id="kc-container-wrapper" class="${properties.kcContainerWrapperClass!}">
+        <div id="kc-container-wrapper" class="${properties.card!}">
 
-            <div id="kc-header" class="${properties.kcHeaderClass!}">
-                <div id="kc-header-wrapper" class="${properties.kcHeaderWrapperClass!}"><#nested "header"></div>
+            <div id="kc-header" class="${properties.cardHeader!}">
+                <div id="kc-header-wrapper" class="${properties.cardTitle!}"><#nested "header"></div>
             </div>
 
             <#if realm.internationalizationEnabled>
@@ -56,38 +56,37 @@
                 </div>
             </#if>
 
-            <div id="kc-content" class="${properties.kcContentClass!}">
-                <div id="kc-content-wrapper" class="${properties.kcContentWrapperClass!}">
-
-                    <#if displayMessage && message?has_content>
-                        <div class="${properties.kcFeedbackAreaClass!}">
-                            <div class="alert alert-${message.type}">
-                                <#if message.type = 'success'><span class="${properties.kcFeedbackSuccessIcon!}"></span></#if>
-                                <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
-                                <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
-                                <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
-                                <span class="kc-feedback-text">${message.summary?no_esc}</span>
-                            </div>
-                        </div>
-                    </#if>
-
-                    <div id="kc-form" class="${properties.kcFormAreaClass!}">
-                        <div id="kc-form-wrapper" class="${properties.kcFormAreaWrapperClass!}">
-                            <#nested "form">
-                        </div>
+            <#if displayMessage && message?has_content>
+                <div class="${properties.kcFeedbackAreaClass!}">
+                    <div class="alert alert-${message.type}">
+                        <#if message.type = 'success'><span class="${properties.kcFeedbackSuccessIcon!}"></span></#if>
+                        <#if message.type = 'warning'><span class="${properties.kcFeedbackWarningIcon!}"></span></#if>
+                        <#if message.type = 'error'><span class="${properties.kcFeedbackErrorIcon!}"></span></#if>
+                        <#if message.type = 'info'><span class="${properties.kcFeedbackInfoIcon!}"></span></#if>
+                        <span class="kc-feedback-text">${message.summary?no_esc}</span>
                     </div>
+                </div>
+            </#if>
 
-                    <#if displayInfo>
+            <div id="kc-form" class="${properties.cardBody!}">
+                <div id="kc-form-wrapper"  class="login">
+                    <#nested "form">
+                </div>
+            </div>
+
+            <#if displayInfo>
+                <div class="card-footer">
+                    <div class="row">
                         <div id="kc-info" class="${properties.kcInfoAreaClass!}">
                             <div id="kc-info-wrapper" class="${properties.kcInfoAreaWrapperClass!}">
                                 <#nested "info">
                             </div>
                         </div>
-                    </#if>
+                    </div>
                 </div>
-            </div>
+            </#if>
         </div>
     </div>
-</body>
+</body> 
 </html>
 </#macro>
